@@ -5,13 +5,17 @@
   
 
   
-  <title>Archives | Cygnus7&#39;s Personal Blog</title>
+  <title>Mikrotik VPN IPsec Banyak Tunnel dengan Source / Destination Address yang sama  | Cygnus7&#39;s Personal Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Cygnus7&#39;s Personal Blog">
-<meta property="og:url" content="http://cygnus7seven.github.io/archives/index.html">
+  <meta name="description" content="Cara Mengatasi masalah Mikrotik VPN IPsec Banyak Tunnel dengan Source &#x2F; Destination Address yang sama adalah sebenarnya sangat mudah, hanya saja banyak orang tidak memperhatikan.Apalagi Setingan di Ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mikrotik VPN IPsec Banyak Tunnel dengan Source &#x2F; Destination Address yang sama ">
+<meta property="og:url" content="http://cygnus7seven.github.io/2020/07/15/Mikrotik-VPN-IPsec-Banyak-Tunnel-dengan-Source-Destination-Address-yang-sama/index.html">
 <meta property="og:site_name" content="Cygnus7&#39;s Personal Blog">
+<meta property="og:description" content="Cara Mengatasi masalah Mikrotik VPN IPsec Banyak Tunnel dengan Source &#x2F; Destination Address yang sama adalah sebenarnya sangat mudah, hanya saja banyak orang tidak memperhatikan.Apalagi Setingan di Ro">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-15T08:06:26.000Z">
+<meta property="article:modified_time" content="2020-07-15T09:02:43.772Z">
 <meta property="article:author" content="cygnus7">
 <meta name="twitter:card" content="summary">
   
@@ -62,97 +66,62 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/07/15/Mikrotik-VPN-IPsec-Banyak-Tunnel-dengan-Source-Destination-Address-yang-sama/" class="archive-article-date">
-  <time datetime="2020-07-15T08:06:26.000Z" itemprop="datePublished">Jul 15</time>
+        <section id="main"><article id="post-Mikrotik-VPN-IPsec-Banyak-Tunnel-dengan-Source-Destination-Address-yang-sama" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/Mikrotik-VPN-IPsec-Banyak-Tunnel-dengan-Source-Destination-Address-yang-sama/" class="article-date">
+  <time datetime="2020-07-15T08:06:26.000Z" itemprop="datePublished">2020-07-15</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/Mikrotik-VPN-IPsec-Banyak-Tunnel-dengan-Source-Destination-Address-yang-sama/">Mikrotik VPN IPsec Banyak Tunnel dengan Source / Destination Address yang sama </a>
+    <h1 class="article-title" itemprop="name">
+      Mikrotik VPN IPsec Banyak Tunnel dengan Source / Destination Address yang sama 
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/07/15/Cara-Cek-Pulsa-Indosat-XL-Axis-Telkomsel-Three-3-Smartfren/" class="archive-article-date">
-  <time datetime="2020-07-15T04:20:36.000Z" itemprop="datePublished">Jul 15</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/Cara-Cek-Pulsa-Indosat-XL-Axis-Telkomsel-Three-3-Smartfren/">Cara Cek Pulsa Indosat, XL, Axis, Telkomsel, Three(3), Smartfren</a>
-    </h1>
-  
+        <p>Cara Mengatasi masalah Mikrotik VPN IPsec Banyak Tunnel dengan Source / Destination Address yang sama adalah sebenarnya sangat mudah, hanya saja banyak orang tidak memperhatikan.<br>Apalagi Setingan di Router Mikrotik yang cukup banyak yang terkadang membuat bingung.</p>
+<p>Masalah yang saya hadapi baru-baru ini adalah saya mengalami kesulitan ketika saya mempunyai 3 Tunnel yang Konek secara bersamaan, sedangkan saya memakai 1 Source Address yang sama untuk tiga Tunnel Tersebut, yaitu “192.168.200.200”.<br>Satu IP Tersebut konek ke IP berikut : </p>
+<ul>
+<li>10.14.42.164</li>
+<li>10.14.42.146</li>
+<li>10.14.42.148</li>
+</ul>
+<p>Ketika 3 Tunnel tersebut berstatus Established, hanya salah satu IP yang dapat saya jangkau, terkadang 10.14.42.164, terkadang 10.14.42.146, dan 10.14.42.148.<br>Ternyata masalahnya ada di Pengaturan “Level” yang ada di Setingan IPsec Mikrotik.</p>
+<p>Secara Default, Level pada IPsec akan diset sebagai “require”, yang akan membuat Banyak Tunnel dengan Source Address atau Destination Address yang sama menjadi satu Tunnel.</p>
+<p>Untuk mengatasinya cukup mudah, hanya dengan mengubah “Level” yang tadinya “require” menjadi “<strong>unique</strong>“.</p>
+<p>Setelah diubah menjadi “<strong>unique</strong>“, setiap Tunnel dengan Source Address atau Destination Address akan terdeteksi sebagai Tunnel Masing-Masing.</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/07/15/Cara-Cek-dan-Melihat-Nomor-HP-Indosat-XL-Axis-Telkomsel-Smartfren/" class="archive-article-date">
-  <time datetime="2020-07-15T00:42:51.000Z" itemprop="datePublished">Jul 15</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/Cara-Cek-dan-Melihat-Nomor-HP-Indosat-XL-Axis-Telkomsel-Smartfren/">Cara Cek dan Mengetahui Nomor HP Indosat, XL, Axis, Telkomsel, Three(3), Smartfren</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/07/15/hello-world/" class="archive-article-date">
-  <time datetime="2020-07-14T23:28:20.667Z" itemprop="datePublished">Jul 15</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://cygnus7seven.github.io/2020/07/15/Mikrotik-VPN-IPsec-Banyak-Tunnel-dengan-Source-Destination-Address-yang-sama/" data-id="ckcn504nr0002doujblz08x4w" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
+      
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/07/15/Cara-Cek-Pulsa-Indosat-XL-Axis-Telkomsel-Three-3-Smartfren/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Cara Cek Pulsa Indosat, XL, Axis, Telkomsel, Three(3), Smartfren</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
